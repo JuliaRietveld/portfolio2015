@@ -1,0 +1,244 @@
+// Table of content
+// 1. Typography
+// 2. Layout
+// 3. Forms
+//
+//
+
+@import 'breakpoint';
+
+$wide-screen: max-width 1199px;
+$tablet: max-width 991px;
+$mobile-landscape: max-width 767px;
+$mobile-medium: max-width 550px;
+$mobile-small: max-width 400px;
+$mobile: max-width 499px;
+
+// 1. Typography ------------------------------------------------------------
+html {
+	font-size: 62.5%;
+}
+
+body {
+  font-family: $opensans;
+  color: $color-base-text;
+  @include rem(font-size, 16px);
+  @include rem(line-height, 24px);
+  letter-spacing: 0.4px;
+  position: relative;
+  min-width: 320px;
+}
+
+.site-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+p {
+	margin: 0 0 15px;
+}
+
+a {
+	
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+#{headings(all)} {
+  color: $color-menu;
+  @include rem(line-height, 36px);
+  font-family: $oswald;
+  letter-spacing: normal;
+  line-height: normal;
+  font-weight: normal;
+  margin: 0 0 22px;
+}
+
+h1 {
+	@include rem(font-size, 30px);
+}
+h2 {
+	@include rem(font-size, 24px);
+
+  &.section-title {
+    @include rem(font-size, 36px);
+    font-family: $oswald;
+    padding: 9px 0;
+    position: relative;
+    margin: 0 auto 89px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 297px;
+
+    @include breakpoint($tablet) { /* max-width: 767 */
+      @include rem(font-size, 32px);
+      padding: 6px 0;
+      width: 237px;
+    }
+
+    @include breakpoint($mobile-medium) { /* max-width: 991 */
+      margin: 0 auto 45px;
+    }
+  }
+}
+h3 {
+	@include rem(font-size, 20px);
+}
+h4 {
+	@include rem(font-size, 18px);
+  text-transform: uppercase;
+}
+h5 {
+	@include rem(font-size, 16px);
+  color: $color-base-text;
+  font-family: $ptsans;
+  text-transform: uppercase;
+}
+h6 {
+	@include rem(font-size, 12px);
+}
+
+.dropcap {
+  border-radius: 50%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  float: left;
+  font-weight: bold;
+  font-size: 22px;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 12px;
+  text-align: center;
+  width: 40px;
+  
+  &.dropcap__primary {
+  	@include background-image(linear-gradient(#c06e30, #b05726));
+	}
+	&.dropcap__secondary {
+  	@include background-image(linear-gradient(#3f3931, #312d27));
+	}
+	&.dropcap__tertiary {
+  	background: $color-white;
+	}
+}
+
+// 2. Layout ---------------------------------------------------------------
+section {
+	.container {
+		padding: 100px 0;
+
+		@include breakpoint($mobile-medium) { /* max-width: 550 */
+			padding: 70px 0;
+		}
+	}
+}
+
+.container {
+	@include container($susy);
+
+	@include breakpoint($wide-screen) { /* max-width: 1199 */
+		@include container(10);
+		margin: 0 auto;
+	}
+	@include breakpoint($tablet) { /* max-width: 991 */
+		@include container(7.7);
+		margin: 0 auto;
+	}
+	@include breakpoint($mobile-landscape) { /* max-width: 767 */
+		@include container(12);
+		margin: 0 15px;
+	}
+	// @include breakpoint($mobile) { /* max-width: 499 */
+	// 	@include container(12);
+	// 	margin: 0 10px;
+	// 	padding-left: 0;
+	// 	padding-right: 0;
+	// }
+}
+table {
+	width: 100%;
+}
+img, media {
+  max-width: 100%;
+  vertical-align: top;
+  height: auto !important;
+}
+
+#map_canvas img { //Google map fix
+	max-width:none;
+}
+
+// 3. Forms ------------------------------------------------------------
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="search"],
+input[type="tel"],
+textarea {
+	background: $color-white;
+	// border: 1px solid $color-tabs-border;
+	box-sizing: border-box;
+	color: #777;
+	display: inline-block;
+	font-family: $ptsans;
+	font-size: 14px;
+	font-weight: 300;
+	margin: 0;
+	max-width: 100%;
+	outline: medium none;
+	padding: 6px 10px 5px;
+	width: 100%;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	-webkit-appearance:none;
+	
+	//&:focus {
+		// border-color: $color-main-light;
+		// outline: 1px solid #fff;
+		//box-shadow: 0 0 4px rgba(0, 107, 164, 0.5);
+	//}
+}
+
+input[type="submit"],
+input[type="button"] {
+	border: none;
+	outline: none;
+}
+
+label {
+	@include rem(font-size, 16px);
+	font-weight: normal;
+	font-family: $ptsans;
+	letter-spacing: 0.6px;
+	display: block;
+	padding-bottom: 10px;
+	position: relative;
+
+	.form-required {
+		color: $color-require;
+	}
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"] + label:before {
+		content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin: -1px 10px 0 0;
+    vertical-align: middle;
+    background: image-url('checkbox.png') no-repeat 0 bottom;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked + label:before {
+    background: image-url('checkbox.png') no-repeat 0 0;
+}
+
+.form-item {
+	margin-bottom: 25px;
+}

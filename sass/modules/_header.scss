@@ -1,0 +1,441 @@
+.top-bg {
+	@include backImage("../images/main6.jpg");
+	//background: image-url('bg-header.jpg') no-repeat fixed center top;
+	position: relative;
+	height: 675px;
+	
+	@include breakpoint($wide-screen) { /* max-width: 1199 */
+		height: 500px;
+	}
+
+	@include breakpoint($mobile) { /* max-width: 499 */
+		display: none;
+	}
+
+	.scrolldown {
+		position: absolute;
+		bottom: 30px;
+		left: 50%;
+		height: 100px;
+		text-align: center;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		transform: translateX(-50%);
+
+		.icon-mouse {
+			background: image-url('icon-mouse.png') no-repeat 0 0;
+			display: block;
+			width: 31px;
+			height: 57px;
+		}
+
+		.fa {
+			display: inline-block;
+			color: $color-white;
+			@include rem(font-size, 42px);
+
+			-webkit-animation: scrolldown 1.5s ease infinite;
+			-moz-animation: scrolldown 1.5s ease infinite;
+			animation: scrolldown 1.5s ease infinite;
+		}
+	}
+}
+
+.top-logo {
+	margin: 35px 0 0 35px;
+	display: inline-block;
+	position: relative;
+	z-index: 100;
+
+	@include breakpoint($mobile-medium) { /* max-width: 550 */
+		margin: 0;
+		display: block;
+		padding-top: 35px;
+	}
+}
+
+.nav-main {
+	@include background-image(linear-gradient(top, 
+	  	lighten($navBackground, 10), $navBackground));
+	box-shadow: 0 0 3px rgba(0,0,0, .2);
+
+	.container {
+		position: relative;
+	}
+
+	&.sticky {
+		position: fixed;
+		width: 100%;
+		z-index: 500;
+		-webkit-transition: all 200ms linear;
+		-moz-transition: all 200ms linear;
+		transition: all 200ms linear;
+		
+		&.headroom--pinned {
+			-webkit-transform: translateY(0%);
+			-moz-transform: translateY(0%);
+			transform: translateY(0%);
+		}
+		&.headroom--unpinned {
+			-webkit-transform: translateY(-100%);
+			-moz-transform: translateY(-100%);
+			transform: translateY(-100%);
+		}
+
+		.logo {
+			a {
+				padding: 12px 25px;
+			}
+		}
+
+		.flexnav li a {
+			padding: 11px 7px 10px;
+			color: $color-white;
+			text-decoration: none;
+
+			@include breakpoint($tablet) { /* max-width: 991 */
+				padding: 11px 6px 10px;
+				font-size: 90%;
+			}
+		}
+
+		.touch-button {
+			top: 10px;
+		}
+	}
+	
+
+	.logo {
+		@include span(3);
+
+		a {
+			background: $color-mypink;
+			color: $color-white;
+			@include rem(font-size, 18px);
+			display: inline-block;
+			font-family: $oswald;
+			padding: 30px 15px;
+			text-transform: uppercase;
+			text-align: center;
+			text-decoration: none;
+			
+			.normal{
+				display: inline;
+			}
+			.small {
+				display: none;
+			}
+		}
+
+		@include breakpoint($tablet) { /* max-width: 991 */
+			@include span(3);
+			font-size:80%;
+		}
+		@include breakpoint($mobile-landscape) { /* max-width: 767 */
+			a {
+				padding: 20px 25px;
+				
+				.normal {
+					display: none;
+				}
+				.small {
+					display: inline;
+				}
+			}
+		}
+	}
+	.main-menu {
+		@include span(9 last);
+		text-align: right;
+
+		@include breakpoint($tablet) { /* max-width: 991 */
+			@include span(9 last);
+		}
+
+		@include breakpoint($mobile-landscape) { /* max-width: 991 */
+			width: 100%;
+		} 
+	}
+}
+
+/* Flexnav Base Styles */
+
+.flexnav {
+	-webkit-transition: all .5s ease-in-out;
+  	-moz-transition: all .5s ease-in-out;
+  	-ms-transition: all .5s ease-in-out;
+  	transition: all .5s ease-in-out;
+	-webkit-transform-style: preserve-3d; // stop webkit flicker
+  	overflow: hidden;
+	margin: 0 auto;
+	width: 100%;
+  	max-height: 0;
+  	vertical-align: top;
+  
+	  &.opacity {
+	    opacity: 0;
+	  }
+	
+	&.flexnav-show {
+		max-height: 2000px;
+    	opacity: 1;
+		-webkit-transition: all .5s ease-in-out;
+	    -moz-transition: all .5s ease-in-out;
+	    -ms-transition: all .5s ease-in-out;
+	    transition: all .5s ease-in-out;
+	}
+	&.one-page {
+		position: fixed;
+		top: 50px;
+		right: 5%;
+		max-width: 200px;
+	}
+	
+	li {
+		font-size: 90%;
+		position: relative;
+		overflow: hidden;
+		text-align: center;
+
+		a {
+
+			color: $color-white;
+			font-family: $oswald;
+			@include rem(font-size, 18px);
+			display: block;
+			font-weight: normal;
+			padding: 10px 0;
+			position: relative;
+			overflow: hidden;
+			text-decoration: none;
+			text-transform: uppercase;
+			z-index: 2;
+			-webkit-transition: color .2s ease;
+			-moz-transition: color .2s ease;
+			transition: color .2s ease;
+
+			&:hover {
+				color: $color-mypink;
+				-webkit-transition: none;
+				-moz-transition: none;
+				transition: none;
+			} //hover
+			.fa {
+				padding-right: 10px;
+			}
+		}
+
+		&.active {
+			a {
+				// color: $color-main-light;
+			}
+		}
+		
+		ul {
+			width: 100%;
+		
+			li {
+				font-size: 90%;
+				position: relative;
+				overflow: hidden;
+
+				a {
+					display: block;
+				}
+			}
+
+			&.flexnav-show {
+				li {
+					overflow: visible;
+				}
+			}
+		}
+	}
+	
+	.touch-button {
+		position: absolute;
+		z-index: 999;
+		top: 0;
+		right: 0;
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+		display: none;
+		
+		&:hover {
+			cursor: pointer;
+		}
+		
+		.navicon {
+			position: relative;
+			top: 1.4em;
+			font-size: 12px;
+			color: #666;
+		}
+	}
+}
+
+.menu-button {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	float: right;
+	
+	&.one-page {
+		position: fixed;
+		top: 0;
+		right: 5%;
+		padding-right: 45px;
+	}
+	
+	.touch-button {
+		background: transparent;
+		color: $color-base-text;
+		font-family: "fontawesome", sans-serif;
+		@include rem(font-size, 32px);
+		display: block;
+		width: 30px;
+		height: 30px;
+		margin: 15% auto;
+		position: absolute;
+		top: 18px;
+		right: 10px;
+		text-align: center;
+		z-index: 999;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		transition: all .3s ease;
+		-webkit-transform-origin: 50%;
+		-moz-transform-origin: 50%;
+		transform-origin: 50%;
+
+		&:before {
+		  content: "\2630";
+		}
+		&.close {
+		  -webkit-transform: rotate(-180deg);
+		  -moz-transform: rotate(-180deg);
+		  transform: rotate(-180deg);
+		}
+		&.close:before {
+		  content: "\2715";
+		}
+	}
+}
+
+@media all and (min-width: 768px) {
+	body.one-page {
+		padding-top: 70px;
+	}
+
+	.flexnav {
+		overflow: visible;
+		display: inline-block;
+		width: auto;
+
+		&.opacity {
+		  opacity: 1;
+		}
+
+		&.one-page {
+			top: 0;
+			right: auto;
+			max-width: 1080px;
+		}
+
+		li {
+			position: relative;
+			list-style: none;
+			float: left;
+			display: block;	
+			overflow: visible;
+			padding: 0;
+
+			&:last-child {
+				padding-right: 0;
+			}
+			
+			a {
+				padding: 31px 7px 26px;
+				font-weight: 300;
+				position: relative;
+				-webkit-transition: border .2s ease;
+				-moz-transition: border .2s ease;
+				transition: border .2s ease;
+
+				&:hover {
+					border-bottom: 3px solid $color-menu-border;
+					color: $color-menu;
+				}
+
+				&.active {
+					background: $color-main;
+					border-bottom: 3px solid $color-menu-border;
+					color: $color-white;
+				}
+
+				@include breakpoint($tablet) { /* max-width: 991 */
+					padding: 31px 13px 26px;
+				}
+			} //a
+			
+			&> ul {
+				position: absolute; 
+				top: auto;
+				left: 0;
+				min-width: 112px;
+				
+				li {
+					// background: $color-link;
+					// border-bottom: 1px solid $color-main-light;
+					padding: 0;
+					width: 100%;
+
+					a {
+						background: none;
+						border: 0 !important;
+						@include rem(font-size, 12px);
+						font-weight: 300;
+						padding: 1px 0 1px 11px;
+						text-align: left;
+					}
+				}
+			}
+		}		
+	}
+
+	.menu-button {
+		display: none;
+	}
+}
+
+.menu-button {
+	& ~ .main-menu {
+		.secondary-menu {
+			opacity: 0;
+			max-height: 0;
+			-webkit-transition: none 0s ease 0s;
+			-moz-transition: none 0s ease 0s;
+			transition: none 0s ease 0s;
+		}
+	}
+
+	&.active {
+		& ~ .main-menu {
+			.menu-wrapper {
+				right: 0;
+				-webkit-transform: translate3d(0,0,0);
+				-moz-transform: translate3d(0,0,0);
+				transform: translate3d(0,0,0);
+			}
+
+			.secondary-menu {
+			 	max-height: 2000px;
+		    opacity: 1;
+		    -webkit-transition: all 0.5s ease-in-out 0s;
+		    -moz-transition: all 0.5s ease-in-out 0s;
+		    transition: all 0.5s ease-in-out 0s;
+			}
+		}
+	}
+}
